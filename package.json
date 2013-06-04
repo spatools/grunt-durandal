@@ -1,0 +1,41 @@
+{
+  "name": "grunt-durandal",
+  "description": "Grunt Durandal Builder - Build durandal project using a custom require config and a custom almond",
+  "version": "0.0.1",
+  "homepage": "https://github.com/spatools/grunt-durandal.git",
+  "author": {
+    "name": "SPA Tools",
+    "url": "http://github.com/spatools/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/spatools/grunt-durandal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/spatools/grunt-durandal/issues"
+  },
+  "devDependencies": {
+    "grunt": "0.4.x",
+	"requirejs": "2.x.x"
+  },
+  "peerDependencies": {
+    "grunt": "0.4.x",
+	"requirejs": "2.x.x"
+  },
+  "dependencies": {
+	"grunt": "0.4.x",
+	"requirejs": "2.x.x"
+  },
+  "keywords": [
+    "gruntplugin",
+    "grunt",
+    "durandal",
+    "knockout",
+    "build",
+    "builder",
+    "generate",
+    "jquery",
+	"require",
+	"almond"
+  ]
+}

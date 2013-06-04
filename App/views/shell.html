@@ -1,0 +1,11 @@
+﻿<div>
+    <h1>Titre du site</h1>
+    <div class="loading-base" data-bind="visible: isNavigating">Chargement ../</div>
+    <div id="main">
+        <!--ko compose: { 
+            model: router.activeItem,           //wiring the router
+            afterCompose: router.afterCompose,  //wiring the router
+            cacheViews:true                     //telling composition to keep views in the dom, and reuse them (only a good idea with singleton view models)
+        }--><!--/ko-->
+    </div>
+</div>
