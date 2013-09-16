@@ -1,11 +1,10 @@
 ﻿<div>
     <h1>Titre du site</h1>
-    <div class="loading-base" data-bind="visible: isNavigating">Chargement ../</div>
-    <div id="main">
-        <!--ko compose: { 
-            model: router.activeItem,           //wiring the router
-            afterCompose: router.afterCompose,  //wiring the router
-            cacheViews:true                     //telling composition to keep views in the dom, and reuse them (only a good idea with singleton view models)
-        }--><!--/ko-->
-    </div>
+    <nav>
+        <ul data-bind="foreach: router.navigationModel">
+            <li><a data-bind="attr: { href: hash }, text: title"></a></li>
+        </ul>
+    </nav>
+    <div class="loading-base" data-bind="visible: router.isNavigating">Chargement ../</div>
+    <div id="main" data-bind="router: { cacheViews: true }"></div>
 </div>

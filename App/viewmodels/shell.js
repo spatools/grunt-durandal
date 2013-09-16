@@ -1,14 +1,11 @@
-﻿define(['durandal/plugins/router', 'durandal/app'], function (router, app) {
+﻿define(['plugins/router'], function (router) {
     return {
         router: router,
-        isNavigating: router.isNavigating,
-        search: function () {
-            //It's really easy to show a message box.
-            //You can add custom options too. Also, it returns a promise for the user's response.
-            app.showMessage('Search not yet implemented...');
-        },
+
         activate: function () {
-            return router.activate('home');
+            return router.map([
+                { route: '', moduleId: 'viewmodels/home', title: "Home", nav: true }
+            ]).buildNavigationModel().activate();
         }
     };
 });
