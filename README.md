@@ -10,7 +10,7 @@ Install this grunt plugin next to your project's gruntfile with: `npm install gr
 Then add this line to your project's `Gruntfile.js` :
 
 ```javascript
-grunt.loadNpmTasks('grunt-durandal');
+grunt.loadNpmTasks("grunt-durandal");
 ```
 
 Then specify your config: ([more informations][doc-options])
@@ -20,8 +20,8 @@ grunt.initConfig({
     durandal: {
         dist: {
             src: [
-				'app/**/*.*',
-				'scripts/durandal/**/*.*'
+				"app/**/*.*",
+				"scripts/durandal/**/*.*"
 			],
             options: {
                 baseUrl: "app/",
