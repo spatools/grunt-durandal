@@ -2,7 +2,10 @@
     grunt.initConfig({
         durandal: {
             dist: {
-                src: 'app/**/*.*',
+                src: [
+                    'app/**/*.*',
+                    'scripts/durandal/**/*.*'
+                ],
                 options: {
                     uglify2: {
                         compress: {
