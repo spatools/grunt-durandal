@@ -1,7 +1,7 @@
 {
   "name": "grunt-durandal",
   "description": "Grunt Durandal Builder - Build durandal project using a custom require config and a custom almond",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "homepage": "https://github.com/spatools/grunt-durandal.git",
   "author": {
     "name": "SPA Tools",
@@ -15,10 +15,6 @@
     "url": "https://github.com/spatools/grunt-durandal/issues"
   },
   "devDependencies": {
-    "grunt": "0.4.x",
-	"requirejs": "2.x.x"
-  },
-  "peerDependencies": {
     "grunt": "0.4.x",
 	"requirejs": "2.x.x"
   },
