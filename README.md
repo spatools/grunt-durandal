@@ -64,6 +64,7 @@ This file contains a custom almond, and all your modules inlined (views included
 ## Release History
 * 0.0.1 Initial Release
 * 0.1.0 Update to Durandal 2.0
+* 0.1.1 Fix issue with path separator on Windows
 
 [grunt]: https://github.com/gruntjs/grunt
 [doc-options]: https://github.com/spatools/grunt-durandal/wiki/Task-Options

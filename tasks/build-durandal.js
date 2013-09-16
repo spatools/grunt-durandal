@@ -86,6 +86,7 @@ module.exports = function (grunt) {
 
         var ext = path.extname(url);
         url = path.relative(baseUrl, url);
+        url = url.replace(/\\/g, "/");
 
         if (ext === ".html") {
             url = "text!" + url;
