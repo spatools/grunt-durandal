@@ -19,7 +19,10 @@ Then specify your config: ([more informations][doc-options])
 grunt.initConfig({
     durandal: {
         dist: {
-            src: 'app/**/*.*',
+            src: [
+				'app/**/*.*',
+				'scripts/durandal/**/*.*'
+			],
             options: {
                 baseUrl: "app/",
                 mainPath: "app/main.js",
@@ -41,8 +44,6 @@ grunt.initConfig({
 Using the configuration above, consider the following app structure :
 
 * App
-    * durandal 
-        * all durandal files
     * viewmodels
         * shell.js
         * home.js
@@ -50,6 +51,12 @@ Using the configuration above, consider the following app structure :
         * shell.html
         * home.html
     * main.js
+* Scripts
+    * durandal 
+        * all durandal files
+	* require.js
+	* text.js
+	* almond-custom.js
 
 After running the grunt task, a main-built file will be created in your app folder.
 This file contains a custom almond, and all your modules inlined (views included as text!...)
