@@ -1,5 +1,4 @@
-grunt-durandal
-==============
+# grunt-durandal [![NPM version](https://badge.fury.io/js/grunt-durandal.png)](http://badge.fury.io/js/grunt-durandal)
 
 Grunt task to build Durandal projects using a custom require config with a custom almond
 
@@ -65,6 +64,7 @@ This file contains a custom almond, and all your modules inlined (views included
 * 0.0.1 Initial Release
 * 0.1.0 Update to Durandal 2.0
 * 0.1.1 Fix issue with path separator on Windows
+* 0.1.2 Fix naming path issue by renaming path for forced includes
 
 [grunt]: https://github.com/gruntjs/grunt
 [doc-options]: https://github.com/spatools/grunt-durandal/wiki/Task-Options

@@ -80,13 +80,22 @@ module.exports = function (grunt) {
             params.pragmas = _.extend({}, defaultRequireConfig.pragmas, params.pragmas);
     }
 
-    function includePath(array, baseUrl, outputPath, url) {
-        if (url.indexOf(outputPath) !== -1 || url.indexOf("durandal/amd") !== -1)
+    function includePath(array, config, url) {
+        if (url.indexOf(config.out) !== -1 || url.indexOf("durandal/amd") !== -1)
             return;
 
         var ext = path.extname(url);
-        url = path.relative(baseUrl, url);
+        url = path.relative(config.baseUrl, url);
         url = url.replace(/\\/g, "/");
+
+        var pathToReplace = _.chain(config.paths)
+                            .map(function (_path, key) { return { key: key, path: _path }; })
+                            .filter(function (_path) { return url.indexOf(_path.path) !== -1; })
+                            .max(function (_path) { return _path.path.length; })
+                            .value();
+
+        if (pathToReplace)
+            url = url.replace(pathToReplace.path, pathToReplace.key);
 
         if (ext === ".html") {
             url = "text!" + url;
@@ -104,6 +113,7 @@ module.exports = function (grunt) {
 
     grunt.registerMultiTask('durandal', "Grunt Durandal Builder - Build durandal project using a custom require config and a custom almond", function () {
         var done = this.async(),
+            config,
             params = this.options({
                 baseUrl: "app/",
                 out: "app/main-built.js",
@@ -114,13 +124,13 @@ module.exports = function (grunt) {
                 loglevel: "default"
             });
 
+        ensureRequireConfig(params);
+        config = _.extend({}, defaultRequireConfig, params);
+
         this.files.forEach(function (file) {
-            file.src.forEach(_.partial(includePath, params.include, params.baseUrl, params.out));
+            file.src.forEach(_.partial(includePath, config.include, config));
         });
 
-        ensureRequireConfig(params);
-
-        var config = _.extend({}, defaultRequireConfig, params);
         requirejs.optimize(
             config,
             function (response) {
