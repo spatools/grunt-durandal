@@ -32,8 +32,11 @@ module.exports = function (grunt) {
         requirejs = require('requirejs'),
 
         paths = {
-            text: "durandal/amd/text",
-            almond: "durandal/amd/almond-custom"
+            text: "../scripts/text",
+            almond: "../scripts/almond-custom",
+            durandal: "../scripts/durandal",
+            plugins: "../scripts/durandal/plugins",
+            transitions: "../scripts/durandal/transitions"
         },
 
         extensions = {
@@ -47,7 +50,10 @@ module.exports = function (grunt) {
             inlineText: true,
             stubModules: [paths.text],
             paths: {
-                text: paths.text
+                text: paths.text,
+                durandal: paths.durandal,
+                plugins: paths.plugins,
+                transitions: paths.transitions
             },
             keepBuildDir: true,
             optimize: "uglify2",
@@ -66,6 +72,12 @@ module.exports = function (grunt) {
         params.insertRequire = _.uniq(params.insertRequire);
         params.includes = _.uniq(params.includes);
         params.excludes = _.uniq(params.excludes);
+
+        if (params.paths)
+            params.paths = _.extend({}, defaultRequireConfig.paths, params.paths);
+
+        if (params.pragmas)
+            params.pragmas = _.extend({}, defaultRequireConfig.pragmas, params.pragmas);
     }
 
     function includePath(array, baseUrl, outputPath, url) {
@@ -73,7 +85,7 @@ module.exports = function (grunt) {
             return;
 
         var ext = path.extname(url);
-        url = url.replace(baseUrl, "");
+        url = path.relative(baseUrl, url);
 
         if (ext === ".html") {
             url = "text!" + url;
