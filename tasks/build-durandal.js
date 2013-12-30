@@ -47,6 +47,7 @@ module.exports = function (grunt) {
 
         defaultRequireConfig = {
             name: paths.almond,
+            mainName: 'main',
             inlineText: true,
             stubModules: [paths.text],
             paths: {
@@ -68,7 +69,7 @@ module.exports = function (grunt) {
     //#region Private Methods
 
     function ensureRequireConfig(params) {
-        params.insertRequire.push("main");
+        params.insertRequire.push(params.mainName);
         params.insertRequire = _.uniq(params.insertRequire);
         params.includes = _.uniq(params.includes);
         params.excludes = _.uniq(params.excludes);
@@ -117,6 +118,7 @@ module.exports = function (grunt) {
             params = this.options({
                 baseUrl: "app/",
                 out: "app/main-built.js",
+                mainName: "main",
                 mainPath: "app/main.js",
                 include: [],
                 exclude: [],
