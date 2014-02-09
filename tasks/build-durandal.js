@@ -68,7 +68,7 @@ module.exports = function (grunt) {
     //#region Private Methods
 
     function ensureRequireConfig(params) {
-        if (params.forceMain)
+        if (params.includeMain)
             params.insertRequire.push("main");
             
         params.insertRequire = _.uniq(params.insertRequire);
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
                 exclude: [],
                 insertRequire: [],
                 loglevel: "default",
-                forceMain: true
+                includeMain: true
             });
 
         ensureRequireConfig(params);
