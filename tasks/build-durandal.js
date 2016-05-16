@@ -27,9 +27,9 @@
 module.exports = function (grunt) {
     //#region Global Properties
 
-    var _ = grunt.util._,
-        path = require('path'),
-        requirejs = require('requirejs'),
+    var _ = require("lodash"),
+        path = require("path"),
+        requirejs = require("requirejs"),
 
         paths = {
             text: "../scripts/text",
@@ -93,12 +93,13 @@ module.exports = function (grunt) {
         var pathToReplace = _.chain(config.paths)
                             .map(function (_path, key) { return { key: key, path: _path }; })
                             .filter(function (_path) { return url.indexOf(_path.path) !== -1; })
-                            .max(function (_path) { return _path.path.length; })
+                            .maxBy(function (_path) { return _path.path.length; })
                             .value();
 
-        if (pathToReplace)
+        if (pathToReplace) {
             url = url.replace(pathToReplace.path, pathToReplace.key);
-
+        }
+        
         if (ext === ".html") {
             url = "text!" + url;
         }
@@ -113,9 +114,9 @@ module.exports = function (grunt) {
 
     //#endregion
 
-    grunt.registerMultiTask('durandal', "Grunt Durandal Builder - Build durandal project using a custom require config and a custom almond", function () {
+    grunt.registerMultiTask("durandal", "Grunt Durandal Builder - Build durandal project using a custom require config and a custom almond", function () {
         var done = this.async(),
-            config,
+        
             params = this.options({
                 baseUrl: "app/",
                 out: "app/main-built.js",
@@ -128,12 +129,14 @@ module.exports = function (grunt) {
             });
 
         ensureRequireConfig(params);
-        config = _.extend({}, defaultRequireConfig, params);
+        
+        var config = _.extend({}, defaultRequireConfig, params),
+            boundIncludePath = _.partial(includePath, config.include, config);
 
         this.files.forEach(function (file) {
-            file.src.forEach(_.partial(includePath, config.include, config));
+            file.src.forEach(boundIncludePath);
         });
-
+        
         requirejs.optimize(
             config,
             function (response) {

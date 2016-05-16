@@ -1,5 +1,4 @@
-﻿/// <reference path="../../_references.js" />
-define(function () {
+﻿define(["knockout"], function (ko) {
 	return {
 	    notes: ko.observable([
             { title: "Notes #1", content: "Content Note #1" },

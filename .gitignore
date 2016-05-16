@@ -44,6 +44,8 @@ npm-debug.log
 *.suo
 *.user
 *.sln.docstates
+*.sln
+*.*proj
 
 # Build results
 [Dd]ebug/
