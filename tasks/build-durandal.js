@@ -70,8 +70,10 @@ module.exports = function (grunt) {
     function ensureRequireConfig(params) {
         if (params.includeMain)
             params.insertRequire.push("main");
-            
-        params.insertRequire = _.uniq(params.insertRequire);
+
+        if (params.insertRequire !== false)
+            params.insertRequire = _.uniq(params.insertRequire);
+
         params.includes = _.uniq(params.includes);
         params.excludes = _.uniq(params.excludes);
 
